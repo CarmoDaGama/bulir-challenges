@@ -15,8 +15,33 @@
     },
     {
       "plugin": "@nx/expo"
+    },
+    {
+      "plugin": "@nx/webpack/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      },
+      "exclude": ["apps/backend-e2e/**/*"]
     }
   ],
   "projectNameAndRootFormat": "as-provided",
-  "defaultProject": "backend"
+  "defaultProject": "backend",
+  "analytics": true
 }
