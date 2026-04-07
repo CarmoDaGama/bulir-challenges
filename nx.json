@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "installation": {
+    "version": "22.6.4"
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/nest"
+    },
+    {
+      "plugin": "@nx/next"
+    },
+    {
+      "plugin": "@nx/react"
+    },
+    {
+      "plugin": "@nx/expo"
+    }
+  ],
+  "projectNameAndRootFormat": "as-provided",
+  "defaultProject": "backend"
+}

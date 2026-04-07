@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es2022"],
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "paths": {
+      "@bulir-challenges/api-contracts": ["libs/api-contracts/src/index.ts"],
+      "@bulir-challenges/api-contracts/*": ["libs/api-contracts/src/*"],
+      "@bulir-challenges/ui": ["libs/ui/src/index.ts"],
+      "@bulir-challenges/ui/*": ["libs/ui/src/*"],
+      "@bulir-challenges/utils": ["libs/utils/src/index.ts"],
+      "@bulir-challenges/utils/*": ["libs/utils/src/*"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist", "build"]
+}

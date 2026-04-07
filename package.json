@@ -1,0 +1,25 @@
+{
+  "name": "bulir-challenges",
+  "version": "0.0.1",
+  "description": "Monorepo for bulir challenges with NestJS backend, Next.js web, and Expo mobile apps",
+  "license": "UNLICENSED",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "lint": "nx run-many --target=lint --all",
+    "test": "nx run-many --target=test --all",
+    "build": "nx run-many --target=build --all",
+    "dev": "nx run-many --target=serve --all --parallel",
+    "clean": "rm -rf dist node_modules"
+  },
+  "devDependencies": {
+    "@nx/expo": "^22.6.4",
+    "@nx/nest": "^22.6.4",
+    "@nx/next": "^22.6.4",
+    "@nx/react": "^22.6.4",
+    "nx": "^22.6.4"
+  }
+}
