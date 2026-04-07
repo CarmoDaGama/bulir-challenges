@@ -16,7 +16,8 @@
     "clean": "rm -rf dist node_modules",
     "prisma:generate": "prisma generate --schema apps/backend/prisma/schema.prisma",
     "prisma:migrate:dev": "prisma migrate dev --schema apps/backend/prisma/schema.prisma",
-    "prisma:studio": "prisma studio --schema apps/backend/prisma/schema.prisma"
+    "prisma:studio": "prisma studio --schema apps/backend/prisma/schema.prisma",
+    "build:backend": "nx build backend --configuration=production"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
