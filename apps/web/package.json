@@ -1,0 +1,8 @@
+{
+  "name": "web",
+  "version": "0.0.1",
+  "description": "Next.js web app for bulir-challenges",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@bulir-challenges/api-contracts",
+  "version": "0.0.1",
+  "description": "Shared types and DTOs for API contracts",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED"
+}

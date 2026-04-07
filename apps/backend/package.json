@@ -1,0 +1,8 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "NestJS backend for bulir-challenges",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED"
+}

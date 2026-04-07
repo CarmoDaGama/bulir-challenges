@@ -1,0 +1,8 @@
+{
+  "name": "@bulir-challenges/utils",
+  "version": "0.0.1",
+  "description": "Shared utility functions",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED"
+}
