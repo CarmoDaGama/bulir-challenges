@@ -3,10 +3,11 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/backend",
     "module": "commonjs",
-    "moduleResolution": "node10",
+    "moduleResolution": "node",
     "types": ["jest", "node"],
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "ignoreDeprecations": "5.0"
   },
   "include": [
     "jest.config.ts",
