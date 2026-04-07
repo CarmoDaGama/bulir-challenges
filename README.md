@@ -2,7 +2,7 @@
 
 Monorepo for the bulir challenges with **NestJS Backend**, **Next.js Web App**, and **Expo React Native Mobile App**.
 
-## 📋 Structure
+## Structure
 
 ```
 bulir-challenges/
@@ -23,7 +23,7 @@ bulir-challenges/
 
 ```
 
-## 🛠️ Stack
+## Stack
 
 | App       | Technology                          | Database   |
 |-----------|-------------------------------------|------------|
@@ -31,13 +31,13 @@ bulir-challenges/
 | Web       | Next.js 15 + TypeScript + Tailwind  | —          |
 | Mobile    | Expo React Native + TypeScript      | —          |
 
-## 📦 Prerequisites
+## Prerequisites
 
 - **Node.js**: 22 LTS (see `.nvmrc`)
 - **npm**: 10+
 - **PostgreSQL**: 13+
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Install Dependencies
 
@@ -80,15 +80,7 @@ npm run dev
 npm run clean
 ```
 
-## 📚 Phase Progress
-
-- ✅ **Fase 0** – Monorepo setup + tools + CI
-- ⏳ **Fase 1** – Backend (NestJS + PostgreSQL + Prisma)
-- ⏳ **Fase 2** – Web (Next.js)
-- ⏳ **Fase 3** – Mobile (Expo React Native)
-- ⏳ **Fase 4** – Deployment + docs
-
-## 📝 License
+## License
 
 UNLICENSED
 
