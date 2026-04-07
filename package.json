@@ -19,6 +19,9 @@
     "prisma:studio": "prisma studio --schema apps/backend/prisma/schema.prisma",
     "build:backend": "nx build backend --configuration=production"
   },
+  "prisma": {
+    "schema": "apps/backend/prisma/schema.prisma"
+  },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@nestjs/schematics": "^11.0.0",
