@@ -1,14 +1,15 @@
-import { IsEnum, IsOptional, IsString, Matches, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsOptional, IsString, Matches, MinLength } from 'class-validator';
 import { UserRole } from '@prisma/client';
 
 export class RegisterDto {
   @IsString()
+  @MinLength(2)
   name!: string;
 
-  @IsString()
+  @IsEmail()
   email!: string;
 
-  @IsString()
+  @Matches(/^\d{9}$/)
   nif!: string;
 
   @MinLength(8)
