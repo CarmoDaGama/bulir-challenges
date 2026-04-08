@@ -77,7 +77,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@heroui/react": "^3.0.2",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/jwt": "^11.0.2",
