@@ -3,11 +3,14 @@ import { NestApplication } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { AppModule } from '../../../backend/src/app/app.module';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { PrismaService } from '../../../backend/src/prisma/prisma.service';
 
 interface AuthResult {
   accessToken: string;
+  refreshToken: string;
   user: {
     id: string;
     role: 'CLIENT' | 'PROVIDER';
@@ -23,11 +26,13 @@ describe('Backend routes (DB + HTTP)', () => {
   let app: NestApplication;
   let prisma: PrismaService;
   const now = Date.now();
+  const nifBase = 100000000 + (now % 800000000);
 
   let providerAuth: AuthResult;
   let clientAuth: AuthResult;
   let serviceId: string;
   let transactionId: string;
+  let lowBalanceClientAuth: AuthResult;
 
   beforeAll(async () => {
     const moduleFixture = await Test.createTestingModule({
@@ -91,7 +96,7 @@ describe('Backend routes (DB + HTTP)', () => {
       .send({
         name: 'Provider User',
         email: `provider-${now}@test.local`,
-        nif: `${now}01`,
+        nif: `${nifBase}`,
         password: 'password123',
         role: 'PROVIDER',
       });
@@ -101,7 +106,7 @@ describe('Backend routes (DB + HTTP)', () => {
       .send({
         name: 'Client User',
         email: `client-${now}@test.local`,
-        nif: `${now}02`,
+        nif: `${nifBase + 1}`,
         password: 'password123',
         role: 'CLIENT',
         balance: '250.00',
@@ -115,6 +120,22 @@ describe('Backend routes (DB + HTTP)', () => {
 
     expect(providerAuth.accessToken).toBeTruthy();
     expect(clientAuth.accessToken).toBeTruthy();
+    expect(providerAuth.refreshToken).toBeTruthy();
+    expect(clientAuth.refreshToken).toBeTruthy();
+  });
+
+  it('POST /api/auth/refresh rotates refresh token and returns new access token', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/api/auth/refresh')
+      .send({ refreshToken: clientAuth.refreshToken });
+
+    expect(response.status).toBe(201);
+    expect(response.body.accessToken).toBeTruthy();
+    expect(response.body.refreshToken).toBeTruthy();
+    expect(response.body.refreshToken).not.toBe(clientAuth.refreshToken);
+    expect(response.body.user.id).toBe(clientAuth.user.id);
+
+    clientAuth = response.body as AuthResult;
   });
 
   it('POST /api/auth/login authenticates by email and by nif', async () => {
@@ -257,5 +278,40 @@ describe('Backend routes (DB + HTTP)', () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ deleted: true });
+  });
+
+  it('POST /api/transactions handles concurrent requests without overdraft', async () => {
+    const lowBalanceClientRes = await request(app.getHttpServer())
+      .post('/api/auth/register')
+      .send({
+        name: 'Low Balance Client',
+        email: `low-balance-${now}@test.local`,
+        nif: `${nifBase + 2}`,
+        password: 'password123',
+        role: 'CLIENT',
+        balance: '80.00',
+      });
+
+    expect(lowBalanceClientRes.status).toBe(201);
+    lowBalanceClientAuth = lowBalanceClientRes.body as AuthResult;
+
+    const [attemptA, attemptB] = await Promise.all([
+      request(app.getHttpServer())
+        .post('/api/transactions')
+        .set('Authorization', `Bearer ${lowBalanceClientAuth.accessToken}`)
+        .send({ serviceId, idempotencyKey: `race-${now}-a` }),
+      request(app.getHttpServer())
+        .post('/api/transactions')
+        .set('Authorization', `Bearer ${lowBalanceClientAuth.accessToken}`)
+        .send({ serviceId, idempotencyKey: `race-${now}-b` }),
+    ]);
+
+    const statuses = [attemptA.status, attemptB.status].sort();
+    expect(statuses).toEqual([201, 409]);
+
+    const lowBalanceClient = await prisma.user.findUniqueOrThrow({
+      where: { id: lowBalanceClientAuth.user.id },
+    });
+    expect(lowBalanceClient.balance.toString()).toBe('0');
   });
 });
