@@ -1,0 +1,3 @@
+{
+  "buildCommand": "cd apps/web && npx next build && rm -rf ../../.next && cp -R .next ../../.next"
+}
