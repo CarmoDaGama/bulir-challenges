@@ -142,3 +142,6 @@ vite.config.ts.timestamp-*
 .nx/installation
 .nx/cache
 .nx/workspace-data
+.nx/
+.vscode/
+./vscode/
