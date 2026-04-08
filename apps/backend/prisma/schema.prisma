@@ -33,11 +33,24 @@ model User {
   services     Service[]
   sentTx       Transaction[] @relation("TransactionClient")
   recvTx       Transaction[] @relation("TransactionProvider")
+  refreshTokens RefreshToken[]
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 
   @@index([email])
   @@index([nif])
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId, expiresAt])
 }
 
 model Service {
