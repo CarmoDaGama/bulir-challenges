@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env['EXPO_PUBLIC_API_URL'] ?? 'http://localhost:3000/api';
+const API_BASE_URL = process.env['EXPO_PUBLIC_API_URL'] ?? 'https://bulir-challenges-bhkx.onrender.com/api';
 
 export class ApiError extends Error {
   constructor(
