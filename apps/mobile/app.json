@@ -11,6 +11,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.bulir.mobile",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -30,6 +31,12 @@
           "backgroundColor": "#ffffff"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "3ee0a58d-13a3-40eb-81d5-b01938ad10e9"
+      }
+    },
+    "owner": "carmodagama"
   }
 }
