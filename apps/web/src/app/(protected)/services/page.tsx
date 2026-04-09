@@ -24,7 +24,7 @@ const EMPTY_SERVICE_FORM: ServiceFormState = {
   price: '',
 };
 
-const MARKET_CATEGORIES = ['Design', 'Marketing', 'Web', 'Video', 'Musica', 'AI'];
+const MARKET_CATEGORIES = ['Design', 'Marketing', 'Web', 'Video', 'Música', 'AI'];
 
 function formatCurrency(price: string) {
   return new Intl.NumberFormat('pt-AO', {
@@ -122,10 +122,10 @@ export default function ServicesPage() {
 
       if (editingServiceId) {
         await withAuth((token) => api.updateService(token, editingServiceId, payload));
-        setMessage('Servico atualizado com sucesso.');
+        setMessage('Serviço atualizado com sucesso.');
       } else {
         await withAuth((token) => api.createService(token, payload));
-        setMessage('Servico criado com sucesso.');
+        setMessage('Serviço criado com sucesso.');
       }
 
       setServiceForm(EMPTY_SERVICE_FORM);
@@ -171,7 +171,7 @@ export default function ServicesPage() {
 
     try {
       await withAuth((token) => api.deleteService(token, serviceId));
-      setMessage('Servico removido.');
+      setMessage('Serviço removido.');
       await refreshServices();
     } catch (removeError) {
       setError(getErrorMessage(removeError));
@@ -185,7 +185,7 @@ export default function ServicesPage() {
     const servicePrice = Number(service.price);
 
     if (currentBalance < servicePrice) {
-      setError('Saldo insuficiente para esta contratacao.');
+      setError('Saldo insuficiente para está contratação.');
       return;
     }
 
@@ -202,7 +202,7 @@ export default function ServicesPage() {
         })
       );
       await refreshUser();
-      setMessage('Servico contratado com sucesso.');
+      setMessage('Serviço contratado com sucesso.');
     } catch (contractError) {
       setError(getErrorMessage(contractError));
     } finally {
@@ -212,9 +212,9 @@ export default function ServicesPage() {
 
   const title = useMemo(() => {
     if (isProvider) {
-      return 'Gestao de servicos';
+      return 'Gestão de serviços';
     }
-    return 'Marketplace de servicos';
+    return 'Marketplace de serviços';
   }, [isProvider]);
 
   const featuredServices = useMemo(
@@ -246,15 +246,15 @@ export default function ServicesPage() {
           'relative overflow-hidden border-0 p-0 shadow-none',
           isDarkMode
             ? 'bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900'
-            : 'bg-gradient-to-br from-zinc-50 via-lime-50 to-emerald-50'
+            : 'bg-gradient-to-br from-white via-zinc-50 to-slate-100'
         )}
       >
-        <div className="pointer-events-none absolute -left-10 top-10 h-48 w-48 rounded-full bg-lime-400/75 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-6 right-8 h-24 w-24 rounded-full bg-rose-400/50 blur-2xl" />
+        <div className="pointer-events-none absolute -left-10 top-10 h-48 w-48 rounded-full bg-slate-300/55 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-6 right-8 h-24 w-24 rounded-full bg-sky-200/55 blur-2xl" />
 
         <CardContent className="relative grid gap-6 p-6 md:grid-cols-[1.1fr,0.9fr] md:p-9">
           <div className="space-y-5">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-300/35 bg-emerald-300/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-500">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-300/60 bg-slate-200/60 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
               <TrendingUp size={14} />
               Mercado vivo
             </div>
@@ -264,7 +264,7 @@ export default function ServicesPage() {
                 {title}
               </h2>
               <p className={cn('max-w-xl text-sm md:text-base', isDarkMode ? 'text-zinc-300' : 'text-zinc-600')}>
-                Descubra especialistas com cards visuais, preco claro, rating alto e contratacao em um clique.
+                Descubra especialistas com cards visuais, preço claro, rating alto e contratação em um clique.
               </p>
             </div>
 
@@ -276,9 +276,9 @@ export default function ServicesPage() {
                     'h-11 w-full rounded-2xl border pl-9 pr-3 text-sm outline-none transition',
                     isDarkMode
                       ? 'border-zinc-700/80 bg-zinc-900/70 text-zinc-100 placeholder:text-zinc-500 focus:border-lime-400/70'
-                      : 'border-zinc-300 bg-white text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-500'
+                      : 'border-zinc-300 bg-white text-zinc-900 placeholder:text-zinc-400 focus:border-slate-500'
                   )}
-                  placeholder="Busque servico, prestador ou categoria"
+                  placeholder="Busque serviço, prestador ou categoria"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                 />
@@ -298,7 +298,7 @@ export default function ServicesPage() {
                     'rounded-full border px-3 py-1 text-xs font-medium transition',
                     isDarkMode
                       ? 'border-zinc-700 bg-zinc-800/80 text-zinc-200 hover:border-lime-400/50'
-                      : 'border-zinc-300 bg-white text-zinc-700 hover:border-emerald-500'
+                      : 'border-zinc-300 bg-white text-zinc-700 hover:border-slate-400'
                   )}
                 >
                   {category}
@@ -314,7 +314,7 @@ export default function ServicesPage() {
                 isDarkMode ? 'border-zinc-800 bg-zinc-900/70 text-zinc-100' : 'border-zinc-200 bg-white text-zinc-900'
               )}
             >
-              <p className={cn('text-xs uppercase tracking-[0.16em]', isDarkMode ? 'text-zinc-400' : 'text-zinc-500')}>Servico ativos</p>
+              <p className={cn('text-xs uppercase tracking-[0.16em]', isDarkMode ? 'text-zinc-400' : 'text-zinc-500')}>Serviço ativos</p>
               <p className="pt-2 text-3xl font-semibold">{totalServicesCount || services.length}</p>
             </div>
             <div
@@ -323,7 +323,7 @@ export default function ServicesPage() {
                 isDarkMode ? 'border-zinc-800 bg-zinc-900/70 text-zinc-100' : 'border-zinc-200 bg-white text-zinc-900'
               )}
             >
-              <p className={cn('text-xs uppercase tracking-[0.16em]', isDarkMode ? 'text-zinc-400' : 'text-zinc-500')}>Preco medio</p>
+              <p className={cn('text-xs uppercase tracking-[0.16em]', isDarkMode ? 'text-zinc-400' : 'text-zinc-500')}>Preço medio</p>
               <p className="pt-2 text-3xl font-semibold">{formatCurrency(String(averagePrice || 0))}</p>
             </div>
             <div
@@ -333,7 +333,7 @@ export default function ServicesPage() {
               )}
             >
               <p className={cn('text-xs uppercase tracking-[0.16em]', isDarkMode ? 'text-zinc-400' : 'text-zinc-500')}>Crescimento medio</p>
-              <p className="pt-2 text-3xl font-semibold text-emerald-500">+{topGrowth || 480}%</p>
+              <p className="pt-2 text-3xl font-semibold text-slate-700">+{topGrowth || 480}%</p>
             </div>
           </div>
         </CardContent>
@@ -348,7 +348,7 @@ export default function ServicesPage() {
         <p
           className={cn(
             'rounded-xl px-3 py-2 text-sm',
-            isDarkMode ? 'bg-emerald-400/20 text-emerald-100' : 'bg-emerald-100 text-emerald-700'
+            isDarkMode ? 'bg-slate-400/20 text-slate-100' : 'bg-slate-100 text-slate-700'
           )}
         >
           {message}
@@ -361,11 +361,11 @@ export default function ServicesPage() {
             <div>
               <h3 className={cn('text-xl font-semibold', isDarkMode ? 'text-zinc-100' : 'text-zinc-900')}>Painel de prestador</h3>
               <p className={cn('text-sm', isDarkMode ? 'text-zinc-400' : 'text-zinc-600')}>
-                Crie ou edite seus servicos com modal.
+                Crie ou edite seus serviços com modal.
               </p>
             </div>
             <Button type="button" onClick={openCreateModal}>
-              Novo servico
+              Novo serviço
             </Button>
           </div>
         </Card>
@@ -382,13 +382,13 @@ export default function ServicesPage() {
               />
 
               <div className="relative z-10 w-full max-w-2xl overflow-hidden rounded-[28px] border border-zinc-200 bg-white text-zinc-900 shadow-[0_40px_110px_-35px_rgba(15,23,42,0.55)]">
-                <div className="relative border-b border-zinc-200/80 bg-gradient-to-r from-lime-50 via-emerald-50 to-white px-6 py-5 sm:px-7">
-                  <div className="pointer-events-none absolute -left-6 top-0 h-20 w-20 rounded-full bg-lime-300/45 blur-2xl" />
-                  <div className="pointer-events-none absolute right-0 top-0 h-20 w-20 rounded-full bg-rose-300/35 blur-2xl" />
+                <div className="relative border-b border-zinc-200/80 bg-gradient-to-r from-white via-zinc-50 to-slate-100 px-6 py-5 sm:px-7">
+                  <div className="pointer-events-none absolute -left-6 top-0 h-20 w-20 rounded-full bg-slate-300/45 blur-2xl" />
+                  <div className="pointer-events-none absolute right-0 top-0 h-20 w-20 rounded-full bg-sky-200/45 blur-2xl" />
                   <div className="relative flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-600">Bulir Studio</p>
-                      <h4 className="pt-1 text-2xl font-semibold leading-tight">{editingServiceId ? 'Editar servico' : 'Novo servico'}</h4>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">Bulir Studio</p>
+                      <h4 className="pt-1 text-2xl font-semibold leading-tight">{editingServiceId ? 'Editar serviço' : 'Novo serviço'}</h4>
                       <p className="pt-1 text-sm text-zinc-600">Preencha os detalhes para publicar no marketplace.</p>
                     </div>
                     <button
@@ -405,9 +405,9 @@ export default function ServicesPage() {
                 <form id="service-modal-form" onSubmit={submitCreateOrUpdate} className="space-y-5 px-6 py-6 sm:px-7">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="space-y-2">
-                      <span className="text-xs uppercase tracking-[0.14em] text-zinc-500">Titulo</span>
+                      <span className="text-xs uppercase tracking-[0.14em] text-zinc-500">Título</span>
                       <input
-                        className="h-11 w-full rounded-xl border border-zinc-300 bg-white px-3 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
+                        className="h-11 w-full rounded-xl border border-zinc-300 bg-white px-3 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-slate-500 focus:ring-4 focus:ring-slate-100"
                         value={serviceForm.title}
                         onChange={(event) => setServiceForm((prev) => ({ ...prev, title: event.target.value }))}
                         minLength={3}
@@ -417,9 +417,9 @@ export default function ServicesPage() {
                     </label>
 
                     <label className="space-y-2">
-                      <span className="text-xs uppercase tracking-[0.14em] text-zinc-500">Preco (AOA)</span>
+                      <span className="text-xs uppercase tracking-[0.14em] text-zinc-500">Preço (AOA)</span>
                       <input
-                        className="h-11 w-full rounded-xl border border-zinc-300 bg-white px-3 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
+                        className="h-11 w-full rounded-xl border border-zinc-300 bg-white px-3 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-slate-500 focus:ring-4 focus:ring-slate-100"
                         value={serviceForm.price}
                         onChange={(event) => setServiceForm((prev) => ({ ...prev, price: event.target.value }))}
                         placeholder="5000.00"
@@ -428,13 +428,13 @@ export default function ServicesPage() {
                     </label>
 
                     <label className="space-y-2 sm:col-span-2">
-                      <span className="text-xs uppercase tracking-[0.14em] text-zinc-500">Descricao</span>
+                      <span className="text-xs uppercase tracking-[0.14em] text-zinc-500">Descrição</span>
                       <textarea
-                        className="min-h-32 w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
+                        className="min-h-32 w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-slate-500 focus:ring-4 focus:ring-slate-100"
                         value={serviceForm.description}
                         onChange={(event) => setServiceForm((prev) => ({ ...prev, description: event.target.value }))}
                         minLength={10}
-                        placeholder="Descreva o que esta incluido no servico, prazo e diferenciais."
+                        placeholder="Descreva o que está incluído no serviço, prazo e diferenciais."
                         required
                       />
                     </label>
@@ -457,18 +457,18 @@ export default function ServicesPage() {
 
       <Card className={cn('border-0', isDarkMode ? 'bg-zinc-900/75' : 'bg-white')}>
         <CardHeader>
-          <CardTitle className={cn(isDarkMode ? 'text-zinc-100' : 'text-zinc-900')}>Servicos em destaque</CardTitle>
+          <CardTitle className={cn(isDarkMode ? 'text-zinc-100' : 'text-zinc-900')}>Serviços em destaque</CardTitle>
           <CardDescription className={cn(isDarkMode ? 'text-zinc-400' : 'text-zinc-600')}>
-            Cards visuais grandes, com preco destacado, rating e botao de contratacao rapida.
+            Cards visuais grandes, com preço destacado, rating e botao de contratação rápida.
           </CardDescription>
         </CardHeader>
 
-        {loading ? <p className={cn('text-sm', isDarkMode ? 'text-zinc-400' : 'text-zinc-600')}>Carregando servicos...</p> : null}
+        {loading ? <p className={cn('text-sm', isDarkMode ? 'text-zinc-400' : 'text-zinc-600')}>Carregando serviços...</p> : null}
 
         {!loading && featuredServices.length === 0 ? (
           <Card className={cn('border', isDarkMode ? 'border-zinc-800 bg-zinc-900/60' : 'border-zinc-200 bg-zinc-50')}>
             <CardDescription className={cn(isDarkMode ? 'text-zinc-300' : 'text-zinc-600')}>
-              Nenhum servico encontrado com os filtros atuais.
+              Nenhum serviço encontrado com os filtros atuais.
             </CardDescription>
           </Card>
         ) : null}
@@ -497,9 +497,9 @@ export default function ServicesPage() {
                   <div
                     className={cn(
                       'relative h-44 overflow-hidden',
-                      index % 3 === 0 && 'bg-gradient-to-br from-emerald-400 to-lime-500',
-                      index % 3 === 1 && 'bg-gradient-to-br from-cyan-500 to-blue-600',
-                      index % 3 === 2 && 'bg-gradient-to-br from-orange-400 to-rose-500'
+                      index % 3 === 0 && 'bg-gradient-to-br from-slate-500 to-slate-700',
+                      index % 3 === 1 && 'bg-gradient-to-br from-blue-500 to-slate-700',
+                      index % 3 === 2 && 'bg-gradient-to-br from-zinc-500 to-slate-600'
                     )}
                   >
                     <div className="absolute left-4 top-4 rounded-full bg-black/20 px-2 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/90">
@@ -530,7 +530,7 @@ export default function ServicesPage() {
                         {rating} ({sales})
                       </div>
                       <span className={cn('text-xs uppercase tracking-[0.13em]', isDarkMode ? 'text-zinc-500' : 'text-zinc-500')}>
-                        Entrega rapida
+                        Entrega rápida
                       </span>
                     </div>
 
@@ -567,14 +567,14 @@ export default function ServicesPage() {
       <Card className={cn('border-0 py-4', isDarkMode ? 'bg-zinc-900/75' : 'bg-white')}>
         <div className="flex items-center justify-between gap-2">
           <p className={cn('text-sm', isDarkMode ? 'text-zinc-400' : 'text-zinc-600')}>
-            Pagina {page} de {totalPages}
+            Página {page} de {totalPages}
           </p>
           <div className="flex items-center gap-2">
             <Button variant="ghost" type="button" disabled={page <= 1} onClick={() => setPage((prev) => Math.max(1, prev - 1))}>
               Anterior
             </Button>
             <Button variant="ghost" type="button" disabled={page >= totalPages} onClick={() => setPage((prev) => prev + 1)}>
-              Proxima
+              Próxima
             </Button>
           </div>
         </div>

@@ -16,10 +16,10 @@ Backend NestJS com PostgreSQL + Prisma para autenticação, serviços e transaç
 - POST /api/transactions
 - GET /api/transactions
 
-## Regras de negocio implementadas
+## Regras de negócio implementadas
 
-- Apenas PROVIDER cria/edita/remove servicos.
-- Apenas dono do servico pode editar/remover.
+- Apenas PROVIDER cria/edita/remove serviços.
+- Apenas dono do serviço pode editar/remover.
 - Saldo do CLIENT nunca fica negativo em compras.
 - Compra cria debito e credito na mesma transacao de banco.
 - Idempotencia para evitar cobranca duplicada por retry.

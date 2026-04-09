@@ -14,7 +14,7 @@ const bodyFont = Work_Sans({
 
 export const metadata = {
   title: 'Bulir Challenges Web',
-  description: 'Web app para autenticacao, servicos e transacoes.',
+  description: 'Web app para autenticação, serviços e transações.',
 };
 
 export default function RootLayout({

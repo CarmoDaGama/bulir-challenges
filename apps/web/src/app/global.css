@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg-1: #06131f;
-  --bg-2: #10344d;
-  --bg-3: #172026;
-  --card: rgba(9, 25, 38, 0.72);
-  --card-border: rgba(119, 189, 219, 0.25);
-  --text: #d8ebf8;
-  --muted: #9db3c4;
-  --accent: #7dd3fc;
-  --accent-strong: #38bdf8;
+  --bg-1: #f4f4f5;
+  --bg-2: #f8fafc;
+  --bg-3: #ffffff;
+  --card: #ffffff;
+  --card-border: rgba(113, 113, 122, 0.18);
+  --text: #18181b;
+  --muted: #52525b;
+  --accent: #64748b;
+  --accent-strong: #334155;
   --danger: #fb7185;
 }
 
@@ -24,10 +24,7 @@ body {
   margin: 0;
   min-height: 100%;
   color: var(--text);
-  background:
-    radial-gradient(80rem 60rem at 100% -10%, rgba(66, 153, 225, 0.3), transparent 60%),
-    radial-gradient(40rem 30rem at -10% 10%, rgba(45, 212, 191, 0.25), transparent 55%),
-    linear-gradient(155deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+  background: linear-gradient(155deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
   font-family: var(--font-body), sans-serif;
 }
 

@@ -1,11 +1,11 @@
 import { ApiError } from './http';
 
 const ERROR_MAP: Record<number, string> = {
-  400: 'Dados invalidos. Revise os campos e tente novamente.',
-  401: 'Sessao expirada. Entre novamente.',
-  403: 'Voce nao tem permissao para esta acao.',
-  404: 'Recurso nao encontrado.',
-  409: 'Conflito de negocio. Verifique o saldo ou estado atual.',
+  400: 'Dados inválidos. Revise os campos e tente novamente.',
+  401: 'Sessão expirada. Entre novamente.',
+  403: 'Você não tem permissão para está ação.',
+  404: 'Recurso não encontrado.',
+  409: 'Conflito de negócio. Verifique o saldo ou estado atual.',
 };
 
 export function getErrorMessage(error: unknown): string {

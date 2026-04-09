@@ -85,9 +85,9 @@ npm run clean
 Backend pronto com:
 
 - Auth: register, login (email ou NIF) e refresh token.
-- RBAC + ownership para CRUD de servicos.
-- Transacao atomica de contratacao com idempotencia.
-- Paginacao e filtros em servicos e transacoes.
+- RBAC + ownership para CRUD de serviços.
+- Transação atômica de contratação com idempotência.
+- Paginação e filtros em serviços e transações.
 - Testes unitarios + e2e com cenario de concorrencia.
 
 Documentacao backend detalhada: `apps/backend/README.md`
