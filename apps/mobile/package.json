@@ -1,8 +1,27 @@
 {
   "name": "mobile",
   "version": "0.0.1",
-  "description": "Expo React Native app for bulir-challenges",
-  "author": "",
   "private": true,
-  "license": "UNLICENSED"
+  "main": "index.js",
+  "scripts": {
+    "eas-build-post-install": "cd ../.. && node tools/scripts/eas-build-post-install.mjs . apps/mobile"
+  },
+  "dependencies": {
+    "@testing-library/react-native": "*",
+    "expo": "*",
+    "expo-splash-screen": "*",
+    "expo-status-bar": "*",
+    "expo-system-ui": "*",
+    "jest-expo": "*",
+    "metro-config": "*",
+    "metro-resolver": "*",
+    "react": "19.1.0",
+    "react-native": "*",
+    "react-native-svg": "*",
+    "react-native-svg-transformer": "*",
+    "react-native-web": "*"
+  },
+  "devDependencies": {
+    "@expo/ngrok": "^4.1.3"
+  }
 }
